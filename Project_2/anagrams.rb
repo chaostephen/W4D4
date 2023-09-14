@@ -84,7 +84,20 @@ end
 
 
 
-p third_anagram("hello", "ohlel")
 
 
 # p jumble_sort("ohlel")
+
+def fourth_anagram(str1, str2)
+    hsh1 = Hash.new(0)
+    # hsh2=Hash.new(0)
+    
+    str1.each_char do |char|
+        hsh1[char]+=1
+    end
+    str2.each_char do |char|
+        hsh1[char]-=1
+    end
+    hsh1.all?  {|k,v|v.zero?}
+end
+p fourth_anagram("hello", "ohlel")
