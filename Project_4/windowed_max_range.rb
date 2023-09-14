@@ -34,7 +34,33 @@ def windowed_max_range_two(arr, window)
     current_max_range
 
 end
-p windowed_max_range_two([1, 0, 2, 5, 4, 8], 2) # 4, 8
-p windowed_max_range_two([1, 0, 2, 5, 4, 8], 3) # 0, 2, 5
-p windowed_max_range_two([1, 0, 2, 5, 4, 8], 4) # 2, 5, 4, 8
-p windowed_max_range_two([1, 3, 2, 5, 4, 8], 5) # 3, 2, 5, 4, 8
+
+class MyStack
+    def initialize
+      @store = []
+    end
+    def empty?
+        @store.length==0
+    end
+    def pop
+        @store.pop
+    end
+    def push
+        @store<<self
+    end
+    def size
+        @store.length
+    end
+    def peek
+        @store[0]
+    end
+end
+
+def windowed_max_range_mystack(arr,window)
+
+end
+
+p windowed_max_range_mystack([1, 0, 2, 5, 4, 8], 2) # 4 #4, 8
+p windowed_max_range_mystack([1, 0, 2, 5, 4, 8], 3) # 5 #0, 2, 5
+p windowed_max_range_mystack([1, 0, 2, 5, 4, 8], 4) # 6 #2, 5, 4, 8
+p windowed_max_range_mystack([1, 3, 2, 5, 4, 8], 5) # 6 #3, 2, 5, 4, 8
