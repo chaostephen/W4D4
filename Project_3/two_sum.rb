@@ -38,19 +38,30 @@ end
 
 def hash_two_sum(arr, target_sum)
     map = {}
-    arr.each do |e|
-        map[e] = target_sum-e
+    arr.each_with_index do |e, i|
+        subtracted = target_sum - e
+        if map[subtracted]
+            return true
+        else
+            map[e] = true
+        end
     end
+    false
 
-    map.each do |k,v|
-        return true if k + 
-    end
+end
 
+def timer(&prc)
+    before = Time.now
+    prc.call(arr, target)
+    Time.now - before
 end
 
 
 
 
 arr = [0, 1, 5, 7, 8]
-p ok_two_sum?(arr, 6) # => should be true
-p ok_two_sum?(arr, 10) # => should be false
+
+# ok_two_sum_proc = Proc.new(ok_two_sum?)
+
+p timer(arr, 10) {|arr, target| ok_two_sum?(arr, target)} # => should be true
+# p timer(arr, 10, bad_two_sum) # => should be false
