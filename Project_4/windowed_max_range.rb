@@ -14,9 +14,7 @@ def windowed_max_range(array,number)
     current_max_range
     # go through array and find windows
     # find the minimum and maximum difference between all windows
-
 end
-
 
 
 def windowed_max_range_two(arr, window)
@@ -37,26 +35,85 @@ end
 
 class MyStack
     def initialize
-      @store = []
+        @store = []
     end
+
     def empty?
         @store.length==0
     end
+
     def pop
         @store.pop
     end
-    def push
-        @store<<self
+    def push(n)
+        @store<<n
     end
     def size
         @store.length
     end
-    def peek
-        @store[0]
+    def peek(n)
+        @store[-n..-1]
     end
 end
 
-def windowed_max_range_mystack(arr,window)
+def windowed_max_range_stackqueue(arr,window)
+    stack1 = MyStack.new
+    stack2 = MyStack.new
+    stack1.store = arr[0...window]
+    max_diff = 0
+    if stack1.store.max - stack1.store.min > max_diff
+        max_diff = stack1.store.max - stack1.store.min
+    end
+    i = 1
+    until window+i < arr.length
+        stack2.push(stack1.pop)
+        stack2.push(arr[window+i])
+        i+=1
+    end
+end
+
+
+class StackQueue
+    def initialize
+        @in_stack = MyStack.new
+        @out_stack = MyStack.new
+    end
+
+    def enqueue(n)
+        @in_stack << n
+    end
+
+    def flip
+        until @in_stack.empty?
+            @out_stack << @in_stack.pop
+        end
+    end
+
+    def dequeue
+        if @out_stack.empty?
+            flip
+        end
+        return @out_stack.pop
+    end
+
+    def show
+        @out_stack[0]
+    end
+
+    def size
+        @in_stack.size + @out_stack.size
+    end
+
+    def empty?
+        @in_stack.empty? && @out_stack.empty?
+    end
+    
+
+    
+
+
+
+
 
 end
 
